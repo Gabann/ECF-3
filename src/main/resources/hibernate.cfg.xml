@@ -4,6 +4,8 @@
         " http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <!--        <mapping class="org.example.entity."/>-->
+        <mapping class="org.example.entity.Article"/>
+        <mapping class="org.example.entity.Sale"/>
+        <mapping class="org.example.entity.Customer"/>
     </session-factory>
 </hibernate-configuration>

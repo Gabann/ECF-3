@@ -26,7 +26,7 @@ public class AbstractDao<T>
 		session.close();
 	}
 
-	public T findById(Long id)
+	public T getById(Long id)
 	{
 		Session session = sessionFactory.openSession();
 		T entity = session.get(c, id);
@@ -34,7 +34,7 @@ public class AbstractDao<T>
 		return entity;
 	}
 
-	public List<T> findAll()
+	public List<T> getAll()
 	{
 		Session session = sessionFactory.openSession();
 		List<T> entities = session.createQuery("from " + c.getName(), c).list();
@@ -64,7 +64,7 @@ public class AbstractDao<T>
 	{
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
-		delete(findById(id));
+		delete(getById(id));
 		transaction.commit();
 		session.close();
 	}

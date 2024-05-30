@@ -63,7 +63,14 @@ This app as been built in 1 day as part of an exam for my study at [M2I](https:/
 
 Tech stack:
 
+[![Java][JavaBadge]][JavaUrl]
+[![Maven][MavenBadge]][MavenUrl]
+[![Hibernate][HibernateBadge]][HibernateUrl]
+[![MySQL][MySQLBadge]][MySQLUrl]
 
+Code quality:
+
+[![SonarLint][SonarLintBadge]][SonarLintUrl]
 
 <div align="right"><a href="#readme-top">back to top</a></div>
 
@@ -189,3 +196,23 @@ Distributed under the MIT License. See [`LICENSE`](https://github.com/Gabann/ECF
 [gmail-shield]: https://img.shields.io/badge/Gmail-EA4335.svg?style=for-the-badge&logo=Gmail&logoColor=white
 
 [gmail-url]: mailto:gabin.deboulogne@gmail.com
+
+[JavaBadge]: https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white
+
+[JavaUrl]: https://www.java.com/
+
+[HibernateBadge]: https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=hibernate&logoColor=white
+
+[HibernateUrl]: https://hibernate.org/
+
+[MySQLBadge]: https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white
+
+[MySQLUrl]: https://www.mysql.com/
+
+[SonarLintBadge]: https://img.shields.io/badge/SonarLint-CB2029?logo=sonarlint&logoColor=white&style=for-the-badge
+
+[SonarLintUrl]: https://www.sonarlint.org/
+
+[MavenBadge]: https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apache-maven&logoColor=white
+
+[MavenUrl]: https://maven.apache.org/
