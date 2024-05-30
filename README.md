@@ -106,11 +106,12 @@ cd .\ECF-3
 
 <div align="right"><a href="#readme-top">back to top</a></div>
 
-
-
 <!-- USAGE EXAMPLES -->
 
-## Usage
+## Usage examples
+
+Really simple self documenting code samples can be found
+here : [Usage examples](https://github.com/Gabann/ECF-3/tree/master/src/main/java/org/example/code_examples)
 
 <div align="right"><a href="#readme-top">back to top</a></div>
 
