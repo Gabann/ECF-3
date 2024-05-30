@@ -18,7 +18,7 @@ public class OrderService
 
 	//TODO let user buy article multiple times with hashset
 	//TODO handle making order without enough stock
-	public static void makeOrder(Customer customer, Set<Article> articles)
+	public static Sale makeOrder(Customer customer, Set<Article> articles)
 	{
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		sessionFactory.openSession();
@@ -37,5 +37,7 @@ public class OrderService
 			article.setStockQuantity(article.getStockQuantity() - 1);
 			DaoUtils.getArticleDao().saveOrUpdate(article);
 		}
+
+		return sale;
 	}
 }

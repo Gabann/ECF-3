@@ -4,7 +4,7 @@ package org.example.util;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class HibernateUtil
+public final class HibernateUtil
 {
 	private static SessionFactory sessionFactory;
 
@@ -35,7 +35,7 @@ public class HibernateUtil
 		} catch (Exception e)
 		{
 			System.out.println("Something went wrong: " + e);
-			throw new RuntimeException(e);
+			throw new ExceptionInInitializerError(e);
 		}
 	}
 

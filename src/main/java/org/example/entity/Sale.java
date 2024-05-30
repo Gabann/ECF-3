@@ -9,26 +9,34 @@ import java.util.Set;
 @NamedQueries({
 		@NamedQuery(name = "Sale.findByCustomer",
 				query = "select s from Sale s where s.customer = :customer"),
-		@NamedQuery(name = "Sale.findTotalSoldAmount",
+		@NamedQuery(name = "Sale.findTotalSaleRevenues",
 				query = "select sum(article.price) from Sale sale join sale.articles article"),
-		@NamedQuery(name = "Sale.findTotalSoldAmountByArticleId",
+		@NamedQuery(name = "Sale.findTotalSaleRevenuesByArticleId",
 				query = "select sum(article.price) from Sale sale join sale.articles article where article.id = :id"),
 		@NamedQuery(name = "Sale.findAllSoldArticle",
-				query = "select a, count(s) from Sale s left join s.articles a group by a")
+				query = "select a, count(s) from Sale s left join s.articles a group by a"),
+		@NamedQuery(name = "Sale.findByPurchaseDateBetween",
+				query = "select s from Sale s where s.purchaseDate between :purchaseDateStart and :purchaseDateEnd"),
+		@NamedQuery(name = "Sale.findByCategory",
+				query = "select s from Sale s join s.articles a where a.clothesCategory = :clothesCategory")
 })
 public class Sale
 {
 	LocalDate purchaseDate;
+
 	SaleStatus status;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
 	private Long id;
+
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "Sale_articles",
 			joinColumns = @JoinColumn(name = "sale_id"),
 			inverseJoinColumns = @JoinColumn(name = "articles_id"))
 	private Set<Article> articles = new LinkedHashSet<>();
+	
 	@ManyToOne
 	@JoinColumn(name = "customer_id")
 	private Customer customer;

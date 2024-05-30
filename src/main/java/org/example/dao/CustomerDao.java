@@ -13,7 +13,6 @@ public class CustomerDao extends GenericDao<Customer>
 	public CustomerDao(SessionFactory sessionFactory)
 	{
 		super(sessionFactory, Customer.class);
-
 	}
 
 	public List<Sale> getSalesByCustomer(Customer customer)

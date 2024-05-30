@@ -7,13 +7,13 @@ import java.util.Set;
 
 @Entity
 @NamedQueries({
-		@NamedQuery(name = "Article.findTotalSoldById",
+		@NamedQuery(name = "Article.findSoldCountById",
 				query = "select count(a) from Sale s join s.articles a where a.id = :id")
 })
 public class Article
 {
 	String description;
-	ClothesType clothesType;
+	ClothesCategory clothesCategory;
 	double length;
 	double price;
 	int stockQuantity;
@@ -21,6 +21,7 @@ public class Article
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
 	private Long id;
+
 	public Article()
 	{
 	}
@@ -28,7 +29,7 @@ public class Article
 	private Article(Builder builder)
 	{
 		description = builder.description;
-		clothesType = builder.clothesType;
+		clothesCategory = builder.clothesCategory;
 		length = builder.length;
 		price = builder.price;
 		stockQuantity = builder.stockQuantity;
@@ -44,9 +45,9 @@ public class Article
 		this.description = description;
 	}
 
-	public void setClothesType(ClothesType clothesType)
+	public void setClothesType(ClothesCategory clothesCategory)
 	{
-		this.clothesType = clothesType;
+		this.clothesCategory = clothesCategory;
 	}
 
 	public void setLength(double length)
@@ -59,7 +60,7 @@ public class Article
 	{
 		return "Article{" +
 				"description='" + description + '\'' +
-				", clothesType=" + clothesType +
+				", clothesType=" + clothesCategory +
 				", length=" + length +
 				", price=" + price +
 				", stockQuantity=" + stockQuantity +
@@ -87,7 +88,7 @@ public class Article
 		OrderService.makeOrder(customer, Set.of(this));
 	}
 
-	public enum ClothesType
+	public enum ClothesCategory
 	{
 		MALE,
 		FEMALE,
@@ -97,7 +98,7 @@ public class Article
 	public static final class Builder
 	{
 		private String description;
-		private ClothesType clothesType;
+		private ClothesCategory clothesCategory;
 		private double length;
 		private double price;
 		private int stockQuantity;
@@ -112,9 +113,9 @@ public class Article
 			return this;
 		}
 
-		public Builder clothesType(ClothesType val)
+		public Builder clothesType(ClothesCategory val)
 		{
-			clothesType = val;
+			clothesCategory = val;
 			return this;
 		}
 

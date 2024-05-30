@@ -10,9 +10,9 @@ public class ArticleUsageExample
 		var articleDao = DaoUtils.getArticleDao();
 
 		//Create
-		
+
 		Article article1 =
-				new Article.Builder().clothesType(Article.ClothesType.MALE).description("article 1")
+				new Article.Builder().clothesType(Article.ClothesCategory.MALE).description("article 1")
 						.price(15)
 						.length(100)
 						.stockQuantity(100)
