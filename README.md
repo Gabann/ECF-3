@@ -57,7 +57,15 @@
 
 This app as been built in 1 day as part of an exam for my study at [M2I](https://www.m2iformation.fr/).
 
+The goal was to create a clothes store management system using Java and databases.
+
 ### Features
+
+- Product management CRUD
+- Sale management CRUD
+- Customer management CRUD
+- Reports and analysis
+- Database with examples of products, sales and customers
 
 ### Built With
 
@@ -84,10 +92,16 @@ Code quality:
 
 This project requires:
 
+- [JDK](https://www.oracle.com/java/technologies/downloads/) >= 17
+- [MySQL](https://www.mysql.com/)
+- [Maven](https://maven.apache.org/)
+
 ### Installation
 
 ```
-
+# Clone the project:
+git clone https://github.com/Gabann/ECF-3.git
+cd .\ECF-3
 ```
 
 <div align="right"><a href="#readme-top">back to top</a></div>
@@ -100,17 +114,10 @@ This project requires:
 
 <div align="right"><a href="#readme-top">back to top</a></div>
 
-<!-- PREVIEW -->
-
-## Preview
-
-<!-- ROADMAP -->
-
 ## Roadmap
 
-[//]: # (- [ ] IOS port)
-
-[//]: # (    - [ ] Nested Feature)
+- [ ] Handle quantities for products in orders
+- [ ] Find usage for products status
 
 <div align="right"><a href="#readme-top">back to top</a></div>
 
@@ -143,7 +150,7 @@ We welcome contributions from everyone! Follow these steps to contribute:
 
 ## License
 
-Distributed under the MIT License. See [`LICENSE`](https://github.com/Gabann/ECF-3/blob/main/LICENSE) for more information.
+Distributed under the MIT License. See [`LICENSE`](https://github.com/Gabann/ECF-3/blob/master/LICENSE) for more information.
 
 <div align="right"><a href="#readme-top">back to top</a></div>
 

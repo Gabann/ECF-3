@@ -10,8 +10,8 @@ permettre aux employés de suivre les stocks de vêtements, de gérer les ventes
 #### Fonctionnalités attendues :
 
 1. **Gestion de l'inventaire :**
-    - [x] Permettre d'ajouter, modifier, supprimer et consulter les articles de l'inventaire.
-    -  [x] Chaque article doit inclure un identifiant unique, une description, une catégorie (homme, femme, enfant), une taille, un prix, et
+    - [x] Permettre d'ajouter, modifier, supprimer et consulter les products de l'inventaire.
+    -  [x] Chaque product doit inclure un identifiant unique, une description, une catégorie (homme, femme, enfant), une taille, un prix, et
        la quantité en stock.
 
 2. **Gestion des ventes :**
@@ -31,5 +31,5 @@ permettre aux employés de suivre les stocks de vêtements, de gérer les ventes
 
 - Code source de l'application.
 - Documentation utilisateur pour expliquer comment utiliser les différentes fonctionnalités.
-- Une base de données contenant des exemples d'articles, de ventes et de clients.
+- Une base de données contenant des exemples d'products, de ventes et de clients.
  

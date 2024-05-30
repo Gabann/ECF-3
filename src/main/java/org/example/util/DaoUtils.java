@@ -1,12 +1,12 @@
 package org.example.util;
 
-import org.example.dao.ArticleDao;
 import org.example.dao.CustomerDao;
+import org.example.dao.ProductDao;
 import org.example.dao.SaleDao;
 
 public final class DaoUtils
 {
-	private static ArticleDao articleDao;
+	private static ProductDao productDao;
 	private static CustomerDao customerDao;
 	private static SaleDao saleDao;
 
@@ -14,13 +14,13 @@ public final class DaoUtils
 	{
 	}
 
-	public static ArticleDao getArticleDao()
+	public static ProductDao getArticleDao()
 	{
-		if (articleDao == null)
+		if (productDao == null)
 		{
-			articleDao = new ArticleDao(HibernateUtil.getSessionFactory());
+			productDao = new ProductDao(HibernateUtil.getSessionFactory());
 		}
-		return articleDao;
+		return productDao;
 	}
 
 	public static CustomerDao getCustomerDao()

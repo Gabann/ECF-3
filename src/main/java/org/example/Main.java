@@ -1,14 +1,14 @@
 package org.example;
 
-import org.example.entity.Article;
 import org.example.entity.Customer;
+import org.example.entity.Product;
 import org.example.entity.Sale;
 import org.example.service.OrderService;
 import org.example.util.DaoUtils;
 import org.example.util.HibernateUtil;
 import org.hibernate.SessionFactory;
 
-import java.util.Set;
+import java.util.List;
 
 public class Main
 {
@@ -20,66 +20,82 @@ public class Main
 		var customerDao = DaoUtils.getCustomerDao();
 		var saleDao = DaoUtils.getSaleDao();
 
-		Customer customer1 = new Customer.Builder().firstName("eda").lastName("clawthorne").email("a@a.com").build();
+		Customer customer1 = new Customer.Builder("a@a.com")
+				.firstName("eda")
+				.lastName("clawthorne")
+				.build();
 
 		customerDao.saveOrUpdate(customer1);
 
-		Article article1 =
-				new Article.Builder().clothesType(Article.ClothesCategory.MALE).description("t-shirt").price(15).length(100)
-						.stockQuantity(100)
-						.build();
-		articleDao.saveOrUpdate(article1);
+		Customer customer2 = new Customer.Builder("b@b.com")
+				.firstName("Luz")
+				.lastName("Noceda")
+				.build();
 
-		Article article2 =
-				new Article.Builder().clothesType(Article.ClothesCategory.FEMALE).description("t-shirt").price(10).length(80)
+		customerDao.saveOrUpdate(customer2);
+
+		Product product1 =
+				new Product.Builder().clothesType(Product.ClothesCategory.MALE)
+						.description("t-shirt")
+						.price(15)
+						.length(100)
+						.stockQuantity(20)
+						.build();
+		articleDao.saveOrUpdate(product1);
+
+		Product product2 =
+				new Product.Builder().clothesType(Product.ClothesCategory.FEMALE)
+						.description("pants")
+						.price(10)
+						.length(80)
 						.stockQuantity(200)
 						.build();
-		articleDao.saveOrUpdate(article2);
+		articleDao.saveOrUpdate(product2);
 
-		Article article3 =
-				new Article.Builder().clothesType(Article.ClothesCategory.CHILDREN).description("t-shirt").price(999).length(20)
-						.stockQuantity(10)
+		Product product3 =
+				new Product.Builder().clothesType(Product.ClothesCategory.CHILDREN)
+						.description("coat")
+						.price(999)
+						.length(20)
+						.stockQuantity(20)
 						.build();
-		articleDao.saveOrUpdate(article3);
+		articleDao.saveOrUpdate(product3);
 
-//		article1.buy(customer1);
-//		article1.buy(customer1);
-//		article1.buy(customer1);
-//		article2.buy(customer1);
+		product1.buy(customer1);
+		product1.buy(customer1);
+		product2.buy(customer1);
+		product3.buy(customer1);
 
-		Sale sale2 = OrderService.makeOrder(customer1, Set.of(article1, article2));
-		System.out.println(sale2.generateReceipt());
-
-		Sale sale1 = saleDao.getById(2L);
-
+		Sale sale1 = OrderService.makeOrder(customer1, List.of(product1, product2, product3));
+		Sale sale2 = OrderService.makeOrder(customer1, List.of(product3, product3, product3));
+		Sale sale3 = OrderService.makeOrder(customer1, List.of(product2, product2, product3));
 //		System.out.println(sale1.generateReceipt());
-
+//
+//
 //		sale1.setStatus(Sale.SaleStatus.DONE);
 //		saleDao.saveOrUpdate(sale1);
 
 //		List<Sale> customer1Sales = customerDao.getSalesByCustomer(customer1);
-
+//
 //		for (Sale sale : customer1Sales)
 //		{
 //			System.out.println(sale.generateReceipt());
 //		}
-
-//		System.out.println(saleDao.getTotalPrice());
 //
-//		System.out.println(saleDao.getAllSoldArticles());
-
-//		System.out.println(ReportsService.generateStockReport());
-
-//		System.out.println(articleDao.getTotalSoldById(1L));
-//		System.out.println(articleDao.getTotalSoldAmountByArticleId(1L));
-
-//		System.out.println(articleDao.getArticlesPerformance());
-
+//		System.out.println(saleDao.getTotalRevenues());
+////
 //		System.out.println(saleDao.getAllSoldArticlesWithQuantity());
-
-//		System.out.println(saleDao.getByCategory(Article.ClothesCategory.CHILDREN));
-
+//
+//		System.out.println(saleDao.getSoldCountById(1L));
+//		System.out.println(saleDao.getTotalSaleRevenuesById(1L));
+//
+//		System.out.println(saleDao.getByCategory(Product.ClothesCategory.MALE));
+//
 //		System.out.println(saleDao.getBetweenDates(LocalDate.now().minusDays(10), LocalDate.now()));
+
+//		System.out.println(ReportsService.getStockReport());
+//		System.out.println(ReportsService.getArticlesPerformance());
+//		System.out.println(ReportsService.getSalesReport());
 
 		HibernateUtil.close();
 	}

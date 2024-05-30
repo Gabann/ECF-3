@@ -52,12 +52,13 @@ public class Customer
 
 	public static final class Builder
 	{
+		private final String email;
 		private String firstName;
 		private String lastName;
-		private String email;
 
-		public Builder()
+		public Builder(String email)
 		{
+			this.email = email;
 		}
 
 		public Builder firstName(String val)
@@ -69,12 +70,6 @@ public class Customer
 		public Builder lastName(String val)
 		{
 			lastName = val;
-			return this;
-		}
-
-		public Builder email(String val)
-		{
-			email = val;
 			return this;
 		}
 

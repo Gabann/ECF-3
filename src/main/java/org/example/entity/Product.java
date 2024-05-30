@@ -3,14 +3,11 @@ package org.example.entity;
 import org.example.service.OrderService;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.time.LocalDate;
+import java.util.List;
 
 @Entity
-@NamedQueries({
-		@NamedQuery(name = "Article.findSoldCountById",
-				query = "select count(a) from Sale s join s.articles a where a.id = :id")
-})
-public class Article
+public class Product
 {
 	String description;
 	ClothesCategory clothesCategory;
@@ -22,11 +19,11 @@ public class Article
 	@Column(name = "id", nullable = false)
 	private Long id;
 
-	public Article()
+	public Product()
 	{
 	}
 
-	private Article(Builder builder)
+	private Product(Builder builder)
 	{
 		description = builder.description;
 		clothesCategory = builder.clothesCategory;
@@ -85,7 +82,12 @@ public class Article
 
 	public void buy(Customer customer)
 	{
-		OrderService.makeOrder(customer, Set.of(this));
+		OrderService.makeOrder(customer, List.of(this));
+	}
+
+	public void buy(Customer customer, LocalDate purchaseDate)
+	{
+		OrderService.makeOrder(customer, List.of(this), purchaseDate);
 	}
 
 	public enum ClothesCategory
@@ -137,9 +139,9 @@ public class Article
 			return this;
 		}
 
-		public Article build()
+		public Product build()
 		{
-			return new Article(this);
+			return new Product(this);
 		}
 	}
 }

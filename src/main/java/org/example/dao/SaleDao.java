@@ -1,6 +1,6 @@
 package org.example.dao;
 
-import org.example.entity.Article;
+import org.example.entity.Product;
 import org.example.entity.Sale;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -20,12 +20,12 @@ public class SaleDao extends GenericDao<Sale>
 	{
 		Session session = sessionFactory.openSession();
 		Query<Double> query = session.createNamedQuery("Sale.findTotalSaleRevenues", Double.class);
-		double result = query.getSingleResult();
+		Double result = query.getSingleResult();
 		session.close();
-		return result;
+		return result == null ? 0.0 : result;
 	}
 
-	public List<Sale> getByCategory(Article.ClothesCategory clothesCategory)
+	public List<Sale> getByCategory(Product.ClothesCategory clothesCategory)
 	{
 		Session session = sessionFactory.openSession();
 		Query<Sale> query = session.createNamedQuery("Sale.findByCategory", Sale.class);
@@ -46,11 +46,20 @@ public class SaleDao extends GenericDao<Sale>
 		return results;
 	}
 
+	public Long getSalesCount()
+	{
+		Session session = sessionFactory.openSession();
+		Query<Long> query = session.createNamedQuery("Sale.findNumberOfSales", Long.class);
+		Long result = query.getSingleResult();
+		session.close();
+		return result;
+	}
+
 	public String getAllSoldArticlesWithQuantity()
 	{
 		StringBuilder builder = new StringBuilder();
 		Session session = sessionFactory.openSession();
-		Query query = session.createNamedQuery("Sale.findAllSoldArticle");
+		Query query = session.createNamedQuery("Sale.findAllSoldArticleWithQuantity");
 		List results = query.getResultList();
 		for (Object result : results)
 		{
@@ -63,5 +72,25 @@ public class SaleDao extends GenericDao<Sale>
 		}
 		session.close();
 		return builder.toString();
+	}
+
+	public Long getSoldCountById(Long id)
+	{
+		Session session = sessionFactory.openSession();
+		Query<Long> query = session.createNamedQuery("Sale.findSalesCountById", Long.class);
+		query.setParameter("id", id);
+		Long result = query.getSingleResult();
+		session.close();
+		return result;
+	}
+
+	public double getTotalSaleRevenuesById(Long articleId)
+	{
+		Session session = sessionFactory.openSession();
+		Query<Double> query = session.createNamedQuery("Sale.findTotalSaleRevenuesByArticleId", Double.class);
+		query.setParameter("id", articleId);
+		Double result = query.getSingleResult();
+		session.close();
+		return result == null ? 0.0 : result;
 	}
 }

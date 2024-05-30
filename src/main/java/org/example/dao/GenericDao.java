@@ -50,9 +50,9 @@ public class GenericDao<T>
 		{
 			session.delete(entity);
 			transaction.commit();
-
 		} catch (Exception e)
 		{
+			transaction.rollback();
 			e.printStackTrace();
 		} finally
 		{

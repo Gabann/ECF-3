@@ -10,10 +10,9 @@ public class CustomerUsageExample
 		var customerDao = DaoUtils.getCustomerDao();
 
 		//Create
-		Customer customer1 = new Customer.Builder()
+		Customer customer1 = new Customer.Builder("a@a.com")
 				.firstName("firstName")
 				.lastName("lastName")
-				.email("a@a.com")
 				.build();
 
 		//Read

@@ -19,9 +19,9 @@ public final class HibernateUtil
 			try
 			{
 				sessionFactory = buildSessionFactory();
-			} catch (RuntimeException ex)
+			} catch (RuntimeException e)
 			{
-				throw new ExceptionInInitializerError(ex);
+				throw new ExceptionInInitializerError(e);
 			}
 		}
 		return sessionFactory;
@@ -34,7 +34,6 @@ public final class HibernateUtil
 			return new Configuration().configure().buildSessionFactory();
 		} catch (Exception e)
 		{
-			System.out.println("Something went wrong: " + e);
 			throw new ExceptionInInitializerError(e);
 		}
 	}
