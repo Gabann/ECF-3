@@ -75,6 +75,7 @@ Tech stack:
 [![Maven][MavenBadge]][MavenUrl]
 [![Hibernate][HibernateBadge]][HibernateUrl]
 [![MySQL][MySQLBadge]][MySQLUrl]
+![Dotenv][DotenvBadge]
 
 Code quality:
 
@@ -103,6 +104,8 @@ This project requires:
 git clone https://github.com/Gabann/ECF-3.git
 cd .\ECF-3
 ```
+
+Rename the `.env.example` file to `.env` and fill in the database connection information.
 
 <div align="right"><a href="#readme-top">back to top</a></div>
 
@@ -224,3 +227,5 @@ Distributed under the MIT License. See [`LICENSE`](https://github.com/Gabann/ECF
 [MavenBadge]: https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apache-maven&logoColor=white
 
 [MavenUrl]: https://maven.apache.org/
+
+[DotenvBadge]: https://img.shields.io/badge/Dotenv-00000F?style=for-the-badge&logo=dotenv&logoColor=white

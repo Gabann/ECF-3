@@ -31,7 +31,11 @@ public final class HibernateUtil
 	{
 		try
 		{
-			return new Configuration().configure().buildSessionFactory();
+			Configuration configuration = new Configuration();
+			configuration.setProperty("hibernate.connection.url", Environment.getEnv("DB_URL"));
+			configuration.setProperty("hibernate.connection.username", Environment.getEnv("DB_USER"));
+			configuration.setProperty("hibernate.connection.password", Environment.getEnv("DB_PASSWORD"));
+			return configuration.configure().buildSessionFactory();
 		} catch (Exception e)
 		{
 			throw new ExceptionInInitializerError(e);

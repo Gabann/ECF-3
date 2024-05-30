@@ -66,8 +66,8 @@ public class Main
 		product3.buy(customer1);
 
 		Sale sale1 = OrderService.makeOrder(customer1, List.of(product1, product2, product3));
-		Sale sale2 = OrderService.makeOrder(customer1, List.of(product3, product3, product3));
-		Sale sale3 = OrderService.makeOrder(customer1, List.of(product2, product2, product3));
+		OrderService.makeOrder(customer1, List.of(product3, product3, product3));
+		OrderService.makeOrder(customer1, List.of(product2, product2, product3));
 		System.out.println(sale1.generateReceipt());
 
 
