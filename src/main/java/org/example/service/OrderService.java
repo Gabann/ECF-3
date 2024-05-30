@@ -16,6 +16,8 @@ public class OrderService
 	{
 	}
 
+	//TODO let user buy article multiple times with hashset
+	//TODO handle making order without enough stock
 	public static void makeOrder(Customer customer, Set<Article> articles)
 	{
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();

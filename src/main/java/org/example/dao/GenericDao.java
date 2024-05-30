@@ -6,12 +6,12 @@ import org.hibernate.Transaction;
 
 import java.util.List;
 
-public class AbstractDao<T>
+public class GenericDao<T>
 {
-	private final SessionFactory sessionFactory;
+	protected final SessionFactory sessionFactory;
 	Class<T> c;
 
-	public AbstractDao(SessionFactory sessionFactory, Class<T> c)
+	public GenericDao(SessionFactory sessionFactory, Class<T> c)
 	{
 		this.sessionFactory = sessionFactory;
 		this.c = c;

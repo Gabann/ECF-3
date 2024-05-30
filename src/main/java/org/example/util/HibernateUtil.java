@@ -6,10 +6,25 @@ import org.hibernate.cfg.Configuration;
 
 public class HibernateUtil
 {
-	private static final SessionFactory sessionFactory = buildSessionFactory();
+	private static SessionFactory sessionFactory;
 
 	private HibernateUtil()
 	{
+	}
+
+	public static SessionFactory getSessionFactory()
+	{
+		if (sessionFactory == null)
+		{
+			try
+			{
+				sessionFactory = buildSessionFactory();
+			} catch (RuntimeException ex)
+			{
+				throw new ExceptionInInitializerError(ex);
+			}
+		}
+		return sessionFactory;
 	}
 
 	private static SessionFactory buildSessionFactory()
@@ -22,11 +37,6 @@ public class HibernateUtil
 			System.out.println("Something went wrong: " + e);
 			throw new RuntimeException(e);
 		}
-	}
-
-	public static SessionFactory getSessionFactory()
-	{
-		return sessionFactory;
 	}
 
 	public static void close()

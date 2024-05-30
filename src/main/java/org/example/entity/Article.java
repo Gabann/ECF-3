@@ -6,6 +6,10 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@NamedQueries({
+		@NamedQuery(name = "Article.findTotalSoldById",
+				query = "select count(a) from Sale s join s.articles a where a.id = :id")
+})
 public class Article
 {
 	String description;
@@ -17,11 +21,9 @@ public class Article
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
 	private Long id;
-
 	public Article()
 	{
 	}
-
 
 	private Article(Builder builder)
 	{
@@ -30,6 +32,11 @@ public class Article
 		length = builder.length;
 		price = builder.price;
 		stockQuantity = builder.stockQuantity;
+	}
+
+	public Long getId()
+	{
+		return id;
 	}
 
 	public void setDescription(String description)
@@ -45,6 +52,19 @@ public class Article
 	public void setLength(double length)
 	{
 		this.length = length;
+	}
+
+	@Override
+	public String toString()
+	{
+		return "Article{" +
+				"description='" + description + '\'' +
+				", clothesType=" + clothesType +
+				", length=" + length +
+				", price=" + price +
+				", stockQuantity=" + stockQuantity +
+				", id=" + id +
+				'}';
 	}
 
 	public void setPrice(double price)

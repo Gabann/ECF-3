@@ -5,8 +5,17 @@ import java.time.LocalDate;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-
 @Entity
+@NamedQueries({
+		@NamedQuery(name = "Sale.findByCustomer",
+				query = "select s from Sale s where s.customer = :customer"),
+		@NamedQuery(name = "Sale.findTotalSoldAmount",
+				query = "select sum(article.price) from Sale sale join sale.articles article"),
+		@NamedQuery(name = "Sale.findTotalSoldAmountByArticleId",
+				query = "select sum(article.price) from Sale sale join sale.articles article where article.id = :id"),
+		@NamedQuery(name = "Sale.findAllSoldArticle",
+				query = "select a, count(s) from Sale s left join s.articles a group by a")
+})
 public class Sale
 {
 	LocalDate purchaseDate;
@@ -15,13 +24,11 @@ public class Sale
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
 	private Long id;
-
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "Sale_articles",
 			joinColumns = @JoinColumn(name = "sale_id"),
 			inverseJoinColumns = @JoinColumn(name = "articles_id"))
 	private Set<Article> articles = new LinkedHashSet<>();
-
 	@ManyToOne
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
@@ -38,6 +45,18 @@ public class Sale
 		setCustomer(builder.customer);
 	}
 
+	@Override
+	public String toString()
+	{
+		return "Sale{" +
+				"purchaseDate=" + purchaseDate +
+				", status=" + status +
+				", id=" + id +
+				", articles=" + articles +
+				", customer=" + customer +
+				'}';
+	}
+
 	public Set<Article> getArticles()
 	{
 		return articles;
@@ -48,27 +67,35 @@ public class Sale
 		this.articles = articles;
 	}
 
-	public void setStatus(SaleStatus status)
-	{
-		this.status = status;
-	}
-
 	public void setCustomer(Customer customer)
 	{
 		this.customer = customer;
 	}
 
+	public SaleStatus getStatus()
+	{
+		return status;
+	}
+
+	public void setStatus(SaleStatus status)
+	{
+		this.status = status;
+	}
+
 	public String generateReceipt()
 	{
 		StringBuilder builder = new StringBuilder();
-		builder.append("Client: " + this.customer.firstName + " " + this.customer.lastName + "\n");
+		builder.append("Client: ").append(this.customer.firstName).append(" ").append(this.customer.lastName);
+		builder.append("\n");
+
 		double totalPrice = 0;
 		for (Article article : articles)
 		{
-			builder.append("Article: " + article.description + ", Price: " + article.price + "\n");
+			builder.append("Article: ").append(article.description).append(", Price: ").append(article.price);
+			builder.append("\n");
 			totalPrice += article.price;
 		}
-		builder.append("Total price:" + totalPrice);
+		builder.append("Total price:").append(totalPrice);
 
 		return builder.toString();
 	}

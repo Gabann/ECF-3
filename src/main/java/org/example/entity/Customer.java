@@ -24,6 +24,31 @@ public class Customer
 		email = builder.email;
 	}
 
+	@Override
+	public String toString()
+	{
+		return "Customer{" +
+				"firstName='" + firstName + '\'' +
+				", lastName='" + lastName + '\'' +
+				", email='" + email + '\'' +
+				", id=" + id +
+				'}';
+	}
+
+	public void setFirstName(String firstName)
+	{
+		this.firstName = firstName;
+	}
+
+	public void setLastName(String lastName)
+	{
+		this.lastName = lastName;
+	}
+
+	public void setEmail(String email)
+	{
+		this.email = email;
+	}
 
 	public static final class Builder
 	{

@@ -1,9 +1,8 @@
 package org.example.util;
 
-import org.example.dao.AbstractDao;
-import org.example.entity.Article;
-import org.example.entity.Customer;
-import org.example.entity.Sale;
+import org.example.dao.ArticleDao;
+import org.example.dao.CustomerDao;
+import org.example.dao.SaleDao;
 
 public class DaoUtils
 {
@@ -11,19 +10,18 @@ public class DaoUtils
 	{
 	}
 
-	public static AbstractDao<Article> getArticleDao()
+	public static ArticleDao getArticleDao()
 	{
-		return new AbstractDao<>(HibernateUtil.getSessionFactory(), Article.class);
+		return new ArticleDao(HibernateUtil.getSessionFactory());
 	}
 
-	public static AbstractDao<Customer> getCustomerDao()
+	public static CustomerDao getCustomerDao()
 	{
-		return new AbstractDao<>(HibernateUtil.getSessionFactory(), Customer.class);
+		return new CustomerDao(HibernateUtil.getSessionFactory());
 	}
 
-	public static AbstractDao<Sale> getSaleDao()
+	public static SaleDao getSaleDao()
 	{
-		return new AbstractDao<>(HibernateUtil.getSessionFactory(), Sale.class);
+		return new SaleDao(HibernateUtil.getSessionFactory());
 	}
-
 }
