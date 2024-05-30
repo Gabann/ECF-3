@@ -55,11 +55,11 @@ public class SaleDao extends GenericDao<Sale>
 		return result;
 	}
 
-	public String getAllSoldArticlesWithQuantity()
+	public String getAllSolProductsWithQuantity()
 	{
 		StringBuilder builder = new StringBuilder();
 		Session session = sessionFactory.openSession();
-		Query query = session.createNamedQuery("Sale.findAllSoldArticleWithQuantity");
+		Query query = session.createNamedQuery("Sale.findAllSoldProductsWithQuantity");
 		List results = query.getResultList();
 		for (Object result : results)
 		{
@@ -84,11 +84,11 @@ public class SaleDao extends GenericDao<Sale>
 		return result;
 	}
 
-	public double getTotalSaleRevenuesById(Long articleId)
+	public double getTotalSaleRevenuesById(Long productId)
 	{
 		Session session = sessionFactory.openSession();
-		Query<Double> query = session.createNamedQuery("Sale.findTotalSaleRevenuesByArticleId", Double.class);
-		query.setParameter("id", articleId);
+		Query<Double> query = session.createNamedQuery("Sale.findTotalSaleRevenuesByProductId", Double.class);
+		query.setParameter("id", productId);
 		Double result = query.getSingleResult();
 		session.close();
 		return result == null ? 0.0 : result;

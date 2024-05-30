@@ -15,7 +15,7 @@ public final class ReportsService
 
 	public static String getStockReport()
 	{
-		List<Product> productList = DaoUtils.getArticleDao().getAll();
+		List<Product> productList = DaoUtils.getProductDao().getAll();
 
 
 		StringBuilder builder = new StringBuilder();
@@ -43,10 +43,10 @@ public final class ReportsService
 		return builder.toString();
 	}
 
-	public static String getArticlesPerformance()
+	public static String getProductsPerformance()
 	{
 		StringBuilder builder = new StringBuilder();
-		List<Product> productList = DaoUtils.getArticleDao().getAll();
+		List<Product> productList = DaoUtils.getProductDao().getAll();
 		SaleDao saleDao = DaoUtils.getSaleDao();
 
 		for (Product product : productList)

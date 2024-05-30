@@ -55,7 +55,7 @@ public class Product
 	@Override
 	public String toString()
 	{
-		return "Article{" +
+		return "Product{" +
 				"description='" + description + '\'' +
 				", clothesType=" + clothesCategory +
 				", length=" + length +

@@ -1,4 +1,4 @@
-package org.example;
+package org.example.code_examples;
 
 import org.example.entity.Customer;
 import org.example.util.DaoUtils;
@@ -15,8 +15,10 @@ public class CustomerUsageExample
 				.lastName("lastName")
 				.build();
 
+		customerDao.saveOrUpdate(customer1);
+
 		//Read
-		customerDao.getById(1L);
+		System.out.println(customerDao.getById(1L));
 
 		//Update
 		Customer customerToEdit = customerDao.getById(1L);
@@ -26,9 +28,10 @@ public class CustomerUsageExample
 		customerDao.saveOrUpdate(customerToEdit);
 
 		//Delete
-
 		//customerDao.deleteById(1L);
-		//or
+
+		// OR
+
 		Customer customerToDelete = customerDao.getById(1L);
 		customerDao.delete(customerToDelete);
 	}

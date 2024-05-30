@@ -10,10 +10,10 @@ import java.util.List;
 		@NamedQuery(name = "Sale.findByCustomer",
 				query = "select s from Sale s where s.customer = :customer"),
 		@NamedQuery(name = "Sale.findTotalSaleRevenues",
-				query = "select sum(article.price) from Sale sale join sale.products article"),
-		@NamedQuery(name = "Sale.findTotalSaleRevenuesByArticleId",
-				query = "select sum(article.price) from Sale sale join sale.products article where article.id = :id"),
-		@NamedQuery(name = "Sale.findAllSoldArticleWithQuantity",
+				query = "select sum(product.price) from Sale sale join sale.products product"),
+		@NamedQuery(name = "Sale.findTotalSaleRevenuesByProductId",
+				query = "select sum(product.price) from Sale sale join sale.products product where product.id = :id"),
+		@NamedQuery(name = "Sale.findAllSoldProductsWithQuantity",
 				query = "select a, count(s) from Sale s left join s.products a group by a"),
 		@NamedQuery(name = "Sale.findByPurchaseDateBetween",
 				query = "select s from Sale s where s.purchaseDate between :purchaseDateStart and :purchaseDateEnd"),
@@ -53,7 +53,7 @@ public class Sale
 	{
 		purchaseDate = builder.purchaseDate;
 		status = builder.status;
-		setArticles(builder.products);
+		setProducts(builder.products);
 		setCustomer(builder.customer);
 	}
 
@@ -74,19 +74,9 @@ public class Sale
 				"purchaseDate=" + purchaseDate +
 				", status=" + status +
 				", id=" + id +
-				", articles=" + products +
+				", products=" + products +
 				", customer=" + customer +
 				'}';
-	}
-
-	public List<Product> getArticles()
-	{
-		return products;
-	}
-
-	public void setArticles(List<Product> products)
-	{
-		this.products = products;
 	}
 
 	public void setCustomer(Customer customer)
@@ -113,11 +103,12 @@ public class Sale
 		double totalPrice = 0;
 		for (Product product : products)
 		{
-			builder.append("Article: ").append(product.description).append(", Price: ").append(product.price);
+			builder.append("Product: ").append(product.description).append(", Price: ").append(product.price);
 			builder.append("\n");
 			totalPrice += product.price;
 		}
 		builder.append("Total price:").append(totalPrice);
+		builder.append("\n");
 
 		return builder.toString();
 	}
@@ -152,7 +143,7 @@ public class Sale
 			return this;
 		}
 
-		public Builder articles(List<Product> val)
+		public Builder products(List<Product> val)
 		{
 			products = val;
 			return this;

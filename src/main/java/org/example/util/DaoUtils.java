@@ -14,7 +14,7 @@ public final class DaoUtils
 	{
 	}
 
-	public static ProductDao getArticleDao()
+	public static ProductDao getProductDao()
 	{
 		if (productDao == null)
 		{

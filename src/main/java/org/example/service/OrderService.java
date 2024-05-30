@@ -14,7 +14,7 @@ public final class OrderService
 	{
 	}
 
-	//TODO let user buy an article with a specified quantity (maybe with hashmap?)
+	//TODO let user buy a product with a specified quantity (maybe with hashmap?)
 	public static Sale makeOrder(Customer customer, List<Product> products, LocalDate purchaseDate)
 	{
 		try
@@ -31,7 +31,7 @@ public final class OrderService
 					.purchaseDate(purchaseDate)
 					.customer(customer)
 					.status(Sale.SaleStatus.ONGOING)
-					.articles(products)
+					.products(products)
 					.build();
 
 			DaoUtils.getSaleDao().saveOrUpdate(sale);
@@ -39,7 +39,7 @@ public final class OrderService
 			for (Product product : products)
 			{
 				product.setStockQuantity(product.getStockQuantity() - 1);
-				DaoUtils.getArticleDao().saveOrUpdate(product);
+				DaoUtils.getProductDao().saveOrUpdate(product);
 
 			}
 			return sale;
